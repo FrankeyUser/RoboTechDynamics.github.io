@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | RoboTech Dynamics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-robot"></i> RoboTech Dynamics</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="educacion.html">Aprende</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Nuestro Catálogo</h2>
+        <div class="row g-4" id="catalog-container">
+            <!-- Los productos se cargarán dinámicamente con JS para mantener el HTML limpio -->
+        </div>
+    </div>
+
+    <script>
+        const productos = [
+            { id: 1, nombre: "Arduino Uno R3", precio: 25.00, desc: "Microcontrolador ATmega328P, ideal para inicio.", img: "https://www.arduino.cc/en/uploads/Main/A000066_iso_front.png" },
+            { id: 2, nombre: "Raspberry Pi 4 - 4GB", precio: 65.00, desc: "Microordenador potente para visión artificial.", img: "https://m.media-amazon.com/images/I/61u9zN1N7uL._AC_SL1200_.jpg" },
+            { id: 3, nombre: "Sensor Ultrasonico HC-SR04", precio: 3.50, desc: "Sensor de distancia por ultrasonido (2cm-400cm).", img: "https://m.media-amazon.com/images/I/51Hbe-C5UFL._AC_SL1000_.jpg" },
+            { id: 4, nombre: "Servomotor MG996R", precio: 12.00, desc: "Alto torque, engranajes metálicos, 180 grados.", img: "https://m.media-amazon.com/images/I/61-mJ-tX-0L._AC_SL1000_.jpg" },
+            { id: 5, nombre: "Módulo WiFi ESP32", precio: 8.50, desc: "Dual core con WiFi y Bluetooth integrados.", img: "https://m.media-amazon.com/images/I/61M6DkM5V1L._AC_SL1000_.jpg" },
+            { id: 6, nombre: "Sensor de Humedad Suelo", precio: 2.20, desc: "Mide la humedad para sistemas de riego auto.", img: "https://m.media-amazon.com/images/I/51p6y-o6m+L._AC_SL1000_.jpg" },
+            { id: 7, nombre: "Pantalla OLED 0.96\"", precio: 6.00, desc: "Pantalla I2C 128x64 para visualización de datos.", img: "https://m.media-amazon.com/images/I/61xdfGCHf9L._AC_SL1000_.jpg" },
+            { id: 8, nombre: "Driver L298N", precio: 4.50, desc: "Puente H doble para control de motores DC.", img: "https://m.media-amazon.com/images/I/71u9B-l86fL._AC_SL1200_.jpg" },
+            { id: 9, nombre: "Kit Chasis Carro Robot", precio: 18.00, desc: "Base acrílica con 2 motores y rueda loca.", img: "https://m.media-amazon.com/images/I/61K7H6qA5FL._AC_SL1000_.jpg" },
+            { id: 10, nombre: "Sensor PIR HC-SR501", precio: 3.00, desc: "Detector de movimiento infrarrojo pasivo.", img: "https://m.media-amazon.com/images/I/51S9H8GZgXL._AC_SL1000_.jpg" },
+            { id: 11, nombre: "Batería Li-Po 7.4V 2200mAh", precio: 22.00, desc: "Alta densidad de energía para drones y robots.", img: "https://m.media-amazon.com/images/I/61f9t0pY4pL._AC_SL1000_.jpg" },
+            { id: 12, nombre: "Sensor Temperatura DHT22", precio: 5.50, desc: "Alta precisión en temperatura y humedad.", img: "https://m.media-amazon.com/images/I/61G9M0-rMBL._AC_SL1000_.jpg" },
+            { id: 13, nombre: "Modulo Bluetooth HC-05", precio: 7.00, desc: "Comunicación serial inalámbrica para Arduino.", img: "https://m.media-amazon.com/images/I/51r29S7vVJL._AC_SL1000_.jpg" },
+            { id: 14, nombre: "Motor Paso a Paso NEMA 17", precio: 15.00, desc: "Ideal para impresoras 3D y CNC.", img: "https://m.media-amazon.com/images/I/618m2+Hq0UL._AC_SL1000_.jpg" },
+            { id: 15, nombre: "Módulo Relé 4 Canales", precio: 6.50, desc: "Control de cargas de CA hasta 10A/250V.", img: "https://m.media-amazon.com/images/I/71-0Gv2f7AL._AC_SL1000_.jpg" },
+            { id: 16, nombre: "Joystick Analógico", precio: 2.50, desc: "Control de 2 ejes (X, Y) y botón central.", img: "https://m.media-amazon.com/images/I/61Vst92Sj+L._AC_SL1000_.jpg" },
+            { id: 17, nombre: "Módulo Lector RFID RC522", precio: 5.00, desc: "Incluye tarjeta y llavero de 13.56MHz.", img: "https://m.media-amazon.com/images/I/61-A7Yh8lWL._AC_SL1000_.jpg" },
+            { id: 18, nombre: "Teclado Matricial 4x4", precio: 3.20, desc: "Membrana delgada para entrada de datos.", img: "https://m.media-amazon.com/images/I/51uIuG27+UL._AC_SL1000_.jpg" },
+            { id: 19, nombre: "Encoder Rotativo EC11", precio: 2.80, desc: "Medición de rotación y pulsador integrado.", img: "https://m.media-amazon.com/images/I/5176nJb39tL._AC_SL1000_.jpg" },
+            { id: 20, nombre: "Módulo GPS NEO-6M", precio: 16.00, desc: "Receptor de posicionamiento global satelital.", img: "https://m.media-amazon.com/images/I/61MvU7B-xFL._AC_SL1000_.jpg" }
+        ];
+
+        const container = document.getElementById('catalog-container');
+        productos.forEach(p => {
+            container.innerHTML += `
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 card-product shadow-sm border-0">
+                        <img src="${p.img}" class="card-img-top p-3" alt="${p.nombre}" style="height:150px; object-fit:contain;">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title fw-bold">${p.nombre}</h6>
+                            <p class="card-text text-muted small flex-grow-1">${p.desc}</p>
+                            <h5 class="text-primary mt-2">$${p.precio.toFixed(2)}</h5>
+                            <button class="btn btn-sm btn-primary mt-3">Ver Detalle</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2023 RoboTech Dynamics. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

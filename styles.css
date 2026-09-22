@@ -1,0 +1,25 @@
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+}
+
+.card-product img {
+    height: 200px;
+    object-fit: contain;
+    padding: 20px;
+}
+
+.learning-card {
+    transition: transform 0.3s;
+}
+
+.learning-card:hover {
+    transform: translateY(-5px);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
